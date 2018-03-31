@@ -2,7 +2,7 @@
 <html>
     <head lang="en">
         <meta charset="utf-8" />
-        <title>Bitcoin Key Compression Tool</title>
+        <title>Quebecoin Key Compression Tool</title>
         <style>/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -6761,7 +6761,7 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 </style>
-        <meta content="Convert bitcoin keys between compressed and uncompressed format" name="description"/>
+        <meta content="Convert quebecoin keys between compressed and uncompressed format" name="description"/>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="Ian Coleman" name="author" />
         <link type="image/x-icon" rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
@@ -6770,8 +6770,8 @@ button.close {
         <div class="container">
 
             <div class="text-center">
-                <h1>Bitcoin Key Compression Tool</h1>
-                <p>This tool converts between compressed and uncompressed bitcoin keys.</p>
+                <h1>Quebecoin Key Compression Tool</h1>
+                <p>This tool converts between compressed and uncompressed quebecoin keys.</p>
                 <p>The main purpose is as a diagnostic tool.</p>
             </div>
             <hr>
@@ -6796,7 +6796,7 @@ button.close {
 
             <p class="text-center">
                 The input key is
-                <strong class="supplied-type">not a bitcoin key</strong>.
+                <strong class="supplied-type">not a quebecoin key</strong>.
             </p>
 
             <hr>
@@ -26902,9 +26902,9 @@ module.exports = {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
-    pubKeyHash: 0x00,
+    pubKeyHash: 0x3A,
     scriptHash: 0x05,
-    wif: 0x80
+    wif: 0xBA
   },
   testnet: {
     messagePrefix: '\x18Bitcoin Signed Message:\n',
@@ -41093,7 +41093,8 @@ module.exports = {
 
 }).call(this,require("buffer").Buffer)
 },{"bs58check":85,"buffer":5}]},{},[34])(34)
-});</script>
+});
+</script>
         <script>(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.bitcoinjsBip38 = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var asn1 = exports;
 
@@ -76250,7 +76251,7 @@ module.exports = Sha512
         try {
             if (keypair == null) {
                 var decrypted = bitcoinjsBip38.decrypt(suppliedKey, suppliedPassword, updateBip38Progress);
-                var wif = bitcoinjsWif.encode(0x80, decrypted.privateKey, decrypted.compressed);
+                var wif = bitcoinjsWif.encode(0xBA, decrypted.privateKey, decrypted.compressed);
                 keypair = bitcoinjs.bitcoin.ECPair.fromWIF(wif);
                 var compType = keypair.compressed ? "compressed" : "uncompressed";
                 var typeStr = "a BIP38 encrypted " + compType + " private key";
@@ -76262,7 +76263,7 @@ module.exports = Sha512
         } catch (e) {}
         // display the type
         if (keypair == null) {
-            DOM.suppliedType.text("not a bitcoin key");
+            DOM.suppliedType.text("not a quebecoin key");
             compressedDetails.clear();
             uncompressedDetails.clear();
             return;

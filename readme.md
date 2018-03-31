@@ -1,1 +1,1 @@
-A tool for converting between compressed and uncompressed bitcoin keys.
+A tool for converting between compressed and uncompressed quebecoin keys.
