@@ -60,7 +60,7 @@
         try {
             if (keypair == null) {
                 var decrypted = bitcoinjsBip38.decrypt(suppliedKey, suppliedPassword, updateBip38Progress);
-                var wif = bitcoinjsWif.encode(0xBA, decrypted.privateKey, decrypted.compressed);
+                var wif = bitcoinjsWif.encode(0x38, decrypted.privateKey, decrypted.compressed);
                 keypair = bitcoinjs.bitcoin.ECPair.fromWIF(wif);
                 var compType = keypair.compressed ? "compressed" : "uncompressed";
                 var typeStr = "a BIP38 encrypted " + compType + " private key";
@@ -72,7 +72,7 @@
         } catch (e) {}
         // display the type
         if (keypair == null) {
-            DOM.suppliedType.text("not a quebecoin key");
+            DOM.suppliedType.text("not a Rekel key");
             compressedDetails.clear();
             uncompressedDetails.clear();
             return;

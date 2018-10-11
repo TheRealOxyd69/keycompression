@@ -1,1 +1,1 @@
-A tool for converting between compressed and uncompressed quebecoin keys.
+A tool for converting between compressed and uncompressed Rekel keys.

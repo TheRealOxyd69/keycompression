@@ -9741,9 +9741,9 @@ module.exports = {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
-    pubKeyHash: 0x3A,
-    scriptHash: 0x05,
-    wif: 0xBA
+    pubKeyHash: 0x3C,
+    scriptHash: 0xB,
+    wif: 0x38
   },
   testnet: {
     messagePrefix: '\x18Bitcoin Signed Message:\n',

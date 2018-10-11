@@ -2,7 +2,7 @@
 <html>
     <head lang="en">
         <meta charset="utf-8" />
-        <title>Quebecoin Key Compression Tool</title>
+        <title>Rekel Key Compression Tool</title>
         <style>/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -6761,7 +6761,7 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 </style>
-        <meta content="Convert quebecoin keys between compressed and uncompressed format" name="description"/>
+        <meta content="Convert Rekel keys between compressed and uncompressed format" name="description"/>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="Ian Coleman" name="author" />
         <link type="image/x-icon" rel="icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
@@ -6770,8 +6770,8 @@ button.close {
         <div class="container">
 
             <div class="text-center">
-                <h1>Quebecoin Key Compression Tool</h1>
-                <p>This tool converts between compressed and uncompressed quebecoin keys.</p>
+                <h1>Rekel Key Compression Tool</h1>
+                <p>This tool converts between compressed and uncompressed Rekel keys.</p>
                 <p>The main purpose is as a diagnostic tool.</p>
             </div>
             <hr>
@@ -6796,7 +6796,7 @@ button.close {
 
             <p class="text-center">
                 The input key is
-                <strong class="supplied-type">not a quebecoin key</strong>.
+                <strong class="supplied-type">not a Rekel key</strong>.
             </p>
 
             <hr>
@@ -26902,9 +26902,9 @@ module.exports = {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
-    pubKeyHash: 0x3A,
-    scriptHash: 0x05,
-    wif: 0xBA
+    pubKeyHash: 0x3C,
+    scriptHash: 0xB,
+    wif: 0x38
   },
   testnet: {
     messagePrefix: '\x18Bitcoin Signed Message:\n',
@@ -59220,7 +59220,7 @@ module.exports = function privateDecrypt(private_key, enc, reverse) {
   } else {
     padding = 4;
   }
-  
+
   var key = parseKeys(private_key);
   var k = key.modulus.byteLength();
   if (enc.length > k || new bn(enc).cmp(key.modulus) >= 0) {
@@ -63787,13 +63787,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -63802,7 +63802,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -63811,11 +63811,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -63830,9 +63830,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 
@@ -76251,7 +76251,7 @@ module.exports = Sha512
         try {
             if (keypair == null) {
                 var decrypted = bitcoinjsBip38.decrypt(suppliedKey, suppliedPassword, updateBip38Progress);
-                var wif = bitcoinjsWif.encode(0xBA, decrypted.privateKey, decrypted.compressed);
+                var wif = bitcoinjsWif.encode(0x38, decrypted.privateKey, decrypted.compressed);
                 keypair = bitcoinjs.bitcoin.ECPair.fromWIF(wif);
                 var compType = keypair.compressed ? "compressed" : "uncompressed";
                 var typeStr = "a BIP38 encrypted " + compType + " private key";
@@ -76263,7 +76263,7 @@ module.exports = Sha512
         } catch (e) {}
         // display the type
         if (keypair == null) {
-            DOM.suppliedType.text("not a quebecoin key");
+            DOM.suppliedType.text("not a Rekel key");
             compressedDetails.clear();
             uncompressedDetails.clear();
             return;
